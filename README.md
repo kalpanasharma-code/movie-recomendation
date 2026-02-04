@@ -1,6 +1,4 @@
-# Movie Recommender System Using Machine Learning
-
-![Movie Recommender System](demo/6.jpeg)
+# Movie Recommendation System
 
 A sophisticated content-based movie recommendation system built with Python, Streamlit, and machine learning. This application analyzes movie features like genres, keywords, cast, and director to recommend similar movies based on cosine similarity.
 
@@ -13,75 +11,40 @@ A sophisticated content-based movie recommendation system built with Python, Str
 - **Performance Optimized**: Caching and efficient similarity calculations
 - **Real-time API Integration**: Fetches movie posters from TMDB API
 
-## 🎬 Demo
+## � Useful Links
 
-### Live Demo
-[Click here to run it live on server](https://movie-recommeder-system.herokuapp.com/)
+### 🚀 Quick Start
+- **Live Demo**: [Try the App Now](https://movie-recommeder-system.herokuapp.com/)
+- **Clone Repository**: [GitHub](https://github.com/kalpanasharma-code/movie-recomendation)
 
-### Screenshots
+### 📊 Dataset & Resources
+- **TMDB Dataset**: [Download from Kaggle](https://www.kaggle.com/tmdb/tmdb-movie-metadata)
+- **TMDB API Documentation**: [API Reference](https://developers.themoviedb.org/3)
+- **Streamlit Documentation**: [Official Docs](https://docs.streamlit.io/)
+- **Scikit-learn**: [Machine Learning Library](https://scikit-learn.org/)
 
-**Main Interface**
-<img src="demo/1.png" alt="Main Interface" width="70%">
+### 📚 Tutorials & Guides
+- **Content-Based Filtering**: [Tutorial](https://www.datacamp.com/tutorial/recommender-systems-python)
+- **Cosine Similarity**: [Explanation](https://www.learndatasci.com/glossary/cosine-similarity/)
+- **Streamlit Tutorial**: [Getting Started](https://docs.streamlit.io/library/get-started)
 
-**Movie Selection**
-<img src="demo/2.png" alt="Movie Selection" width="70%">
+### 🚀 Deployment Platforms
+- **Heroku**: [Deploy to Heroku](https://devcenter.heroku.com/articles/getting-started-with-python)
+- **Streamlit Cloud**: [Deploy to Streamlit](https://streamlit.io/cloud)
+- **Railway**: [Deploy to Railway](https://railway.app/)
+- **Render**: [Deploy to Render](https://render.com/)
 
-**Recommendation Results**
-<img src="demo/3.png" alt="Recommendation Results" width="70%">
+### 🤖 Machine Learning Resources
+- **NLTK Documentation**: [Natural Language Toolkit](https://www.nltk.org/)
+- **Pandas Guide**: [Data Manipulation](https://pandas.pydata.org/docs/)
+- **NumPy Tutorial**: [Numerical Computing](https://numpy.org/doc/stable/user/quickstart.html)
 
-## 🧠 How It Works
+### 👥 Community & Support
+- **GitHub Issues**: [Report Bugs](https://github.com/kalpanasharma-code/movie-recomendation/issues)
+- **Stack Overflow**: [Get Help](https://stackoverflow.com/questions/tagged/python+machine-learning+recommendation)
+- **Reddit r/MachineLearning**: [Community](https://www.reddit.com/r/MachineLearning/)
 
-### Recommendation Types Explained
-
-#### 1. Content-Based Filtering
-- Uses characteristic information and item attributes
-- Analyzes movie features: genres, keywords, cast, director, overview
-- Creates feature vectors for similarity comparison
-- **Pros**: No cold-start problem for new movies, transparent recommendations
-- **Cons**: Limited discovery, may recommend similar items repeatedly
-
-#### 2. Collaborative Filtering
-- Based on user-item interactions and ratings
-- Finds users with similar preferences
-- **Pros**: Can discover diverse content, learns from user behavior
-- **Cons**: Cold-start problem, computationally expensive
-
-#### 3. Hybrid Approach
-- Combines both content and collaborative methods
-- **Used in**: Modern systems like Netflix, Amazon Prime
-
-### Our Implementation
-
-This project uses **Content-Based Filtering** with the following approach:
-
-1. **Data Collection**: TMDB 5000 movies dataset
-2. **Feature Engineering**: 
-   - Movie overviews → Text processing
-   - Genres, keywords → Tag extraction
-   - Cast (top 3 actors) → Feature tags
-   - Director → Feature tag
-3. **Text Processing**:
-   - Stemming with NLTK PorterStemmer
-   - Stop word removal
-   - Vectorization with CountVectorizer (5000 features)
-4. **Similarity Calculation**: Cosine similarity between movie vectors
-5. **Recommendation**: Top 5 most similar movies
-
-## 📊 Dataset
-
-**Source**: [TMDB Movie Metadata](https://www.kaggle.com/tmdb/tmdb-movie-metadata?select=tmdb_5000_movies.csv)
-
-**Files Used**:
-- `tmdb_5000_movies.csv` - Movie metadata (4,805 movies)
-- `tmdb_5000_credits.csv` - Cast and crew information
-
-**Features Extracted**:
-- Movie ID, Title, Overview
-- Genres, Keywords
-- Cast (Top 3 actors), Director
-- Release Date, Vote Average
-
-## 🚀 Quick Start
+## � Quick Start
 
 ### Prerequisites
 
@@ -122,7 +85,7 @@ The app will open in your browser at `http://localhost:8501`
 ## 🛠️ Project Structure
 
 ```
-Movie-Recommender-System-Using-Machine-Learning/
+movie-recomendation/
 ├── app.py                          # Main Streamlit application
 ├── process_data.py                 # Data processing script
 ├── Movie Recommender System Data Analysis.ipynb  # Jupyter notebook for analysis
@@ -139,64 +102,22 @@ Movie-Recommender-System-Using-Machine-Learning/
 └── demo/                         # Demo screenshots
 ```
 
-## 🔧 Technical Details
-
-### Core Technologies
-
-- **Backend**: Python, NumPy, Pandas, Scikit-learn
-- **Frontend**: Streamlit
-- **ML Algorithms**: CountVectorizer, Cosine Similarity
-- **Text Processing**: NLTK, PorterStemmer
-- **API Integration**: TMDB API for movie posters
-- **Data Storage**: Pickle files for model persistence
+## 🧠 How It Works
 
 ### Algorithm Pipeline
 
-1. **Data Preprocessing**
-   ```python
-   # Merge datasets and clean data
-   movies = movies.merge(credits, on='title')
-   movies.dropna(inplace=True)
-   ```
-
-2. **Feature Extraction**
-   ```python
-   # Extract genres, keywords, cast, director
-   movies['genres'] = movies['genres'].apply(convert)
-   movies['cast'] = movies['cast'].apply(convert_cast)
-   movies['crew'] = movies['crew'].apply(fetch_director)
-   ```
-
-3. **Text Processing**
-   ```python
-   # Stemming and vectorization
-   ps = PorterStemmer()
-   cv = CountVectorizer(max_features=5000, stop_words='english')
-   vector = cv.fit_transform(new_df['tags']).toarray()
-   ```
-
-4. **Similarity Calculation**
-   ```python
-   # Cosine similarity matrix
-   similarity = cosine_similarity(vector)
-   ```
-
-### Performance Optimizations
-
-- **Caching**: Streamlit cache for API calls (1 hour TTL)
-- **Retry Logic**: Automatic retries for failed API requests
-- **Error Handling**: Graceful fallbacks for network issues
-- **Memory Efficiency**: Efficient vector operations with NumPy
-
-## 📈 Model Performance
-
-- **Dataset Size**: 4,805 movies
-- **Feature Dimensions**: 5,000 features per movie
-- **Similarity Matrix**: 4,805 × 4,805 cosine similarity matrix
-- **Recommendation Speed**: < 1 second per query
-- **API Response Time**: < 3 seconds with retry logic
-
-## 🎨 Features in Detail
+1. **Data Collection**: TMDB 5000 movies dataset
+2. **Feature Engineering**: 
+   - Movie overviews → Text processing
+   - Genres, keywords → Tag extraction
+   - Cast (top 3 actors) → Feature tags
+   - Director → Feature tag
+3. **Text Processing**:
+   - Stemming with NLTK PorterStemmer
+   - Stop word removal
+   - Vectorization with CountVectorizer (5000 features)
+4. **Similarity Calculation**: Cosine similarity between movie vectors
+5. **Recommendation**: Top 5 most similar movies
 
 ### Movie Recommendation Process
 
@@ -210,14 +131,40 @@ Movie-Recommender-System-Using-Machine-Learning/
    - Release year
    - Average rating
 
-### Error Handling
+## 📊 Dataset
 
-- **Network Issues**: Automatic retry with exponential backoff
-- **API Failures**: Graceful placeholder images
-- **Missing Data**: Informative error messages
-- **Timeout Protection**: 10-second request timeout
+**Source**: [TMDB Movie Metadata](https://www.kaggle.com/tmdb/tmdb-movie-metadata)
 
-## 🔌 API Integration
+**Files Used**:
+- `tmdb_5000_movies.csv` - Movie metadata (4,805 movies)
+- `tmdb_5000_credits.csv` - Cast and crew information
+
+**Features Extracted**:
+- Movie ID, Title, Overview
+- Genres, Keywords
+- Cast (Top 3 actors), Director
+- Release Date, Vote Average
+
+## 🔧 Technical Details
+
+### Core Technologies
+
+- **Backend**: Python, NumPy, Pandas, Scikit-learn
+- **Frontend**: Streamlit
+- **ML Algorithms**: CountVectorizer, Cosine Similarity
+- **Text Processing**: NLTK, PorterStemmer
+- **API Integration**: TMDB API for movie posters
+- **Data Storage**: Pickle files for model persistence
+
+### Performance Metrics
+
+- **Dataset Size**: 4,805 movies
+- **Feature Dimensions**: 5,000 features per movie
+- **Similarity Matrix**: 4,805 × 4,805 cosine similarity matrix
+- **Recommendation Speed**: < 1 second per query
+- **API Response Time**: < 3 seconds with retry logic
+
+## 🌐 API Integration
 
 ### TMDB API Features
 
@@ -225,16 +172,6 @@ Movie-Recommender-System-Using-Machine-Learning/
 - **Fallback Handling**: Placeholder images for missing posters
 - **Rate Limiting**: Built-in retry logic for API limits
 - **Error Recovery**: Multiple fallback strategies
-
-### API Configuration
-
-```python
-# TMDB API endpoint
-url = "https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&language=en-US"
-
-# Image configuration
-poster_base_url = "https://image.tmdb.org/t/p/w500/"
-```
 
 ## 🧪 Testing
 
@@ -250,15 +187,6 @@ streamlit run app.py
 # Test API connectivity
 python -c "import requests; requests.get('https://api.themoviedb.org/3/550?api_key=8265bd1679663a7ea12ac168da84d2e8')"
 ```
-
-### Test Cases
-
-- ✅ Data loading and processing
-- ✅ Model file generation
-- ✅ Streamlit app launch
-- ✅ Movie recommendation logic
-- ✅ API error handling
-- ✅ Caching functionality
 
 ## 🚀 Deployment
 
@@ -296,61 +224,6 @@ EXPOSE 8501
 CMD ["streamlit", "run", "app.py"]
 ```
 
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Commit your changes**
-   ```bash
-   git commit -m 'Add amazing feature'
-   ```
-4. **Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-5. **Open a Pull Request**
-
-### Development Guidelines
-
-- Follow PEP 8 style guidelines
-- Add comments to complex code
-- Update documentation for new features
-- Test your changes thoroughly
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **TMDB** for providing the movie dataset and API
-- **Streamlit** for the amazing web framework
-- **Scikit-learn** for machine learning tools
-- **NLTK** for natural language processing
-- **Kaggle** for hosting the dataset
-
-## 📞 Contact
-
-**Author**: Kalpana Sharma  
-**Email**: kanku3140@gmail.com  
-**Updated by**: Kalpana Sharma
-
----
-
-## 🔮 Future Enhancements
-
-- **Hybrid Recommendation System**: Combine collaborative filtering
-- **User Profiles**: Personalized recommendations based on preferences
-- **Advanced Features**: Movie trailers, reviews, ratings
-- **Performance Optimization**: GPU acceleration for similarity calculations
-- **Mobile App**: React Native or Flutter application
-- **Real-time Updates**: Live data synchronization with TMDB
-
 ## 🐛 Troubleshooting
 
 ### Common Issues
@@ -375,8 +248,54 @@ Enable debug logging:
 streamlit run app.py --logger.level debug
 ```
 
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. **Fork the repository**
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. **Commit your changes**
+   ```bash
+   git commit -m 'Add amazing feature'
+   ```
+4. **Push to the branch**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. **Open a Pull Request**
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Contact
+
+**Author**: Kalpana Sharma  
+**Email**: kanku3140@gmail.com  
+**Repository**: https://github.com/kalpanasharma-code/movie-recomendation
+
+## 🙏 Acknowledgments
+
+- **TMDB** for providing the movie dataset and API
+- **Streamlit** for the amazing web framework
+- **Scikit-learn** for machine learning tools
+- **NLTK** for natural language processing
+- **Kaggle** for hosting the dataset
+
 ---
 
-**⭐ If you like this project, please give it a star on GitHub!**#   m o v i e - r e c o m e n d a t i o n 
- 
- 
+## 🔮 Future Enhancements
+
+- **Hybrid Recommendation System**: Combine collaborative filtering
+- **User Profiles**: Personalized recommendations based on preferences
+- **Advanced Features**: Movie trailers, reviews, ratings
+- **Performance Optimization**: GPU acceleration for similarity calculations
+- **Mobile App**: React Native or Flutter application
+- **Real-time Updates**: Live data synchronization with TMDB
+
+---
+
+**⭐ If you like this project, please give it a star on GitHub!**
