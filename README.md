@@ -92,8 +92,8 @@ This project uses **Content-Based Filtering** with the following approach:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/entbappy/Movie-Recommender-System-Using-Machine-Learning.git
-   cd Movie-Recommender-System-Using-Machine-Learning
+   git clone https://github.com/kalpanasharma-code/movie-recomendation.git
+   cd movie-recomendation
    ```
 
 2. **Install dependencies**
@@ -377,5 +377,6 @@ streamlit run app.py --logger.level debug
 
 ---
 
-**⭐ If you like this project, please give it a star on GitHub!**#   m o v i e - r e c o m e n d a t i o n  
+**⭐ If you like this project, please give it a star on GitHub!**#   m o v i e - r e c o m e n d a t i o n 
+ 
  
